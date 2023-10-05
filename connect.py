@@ -1,3 +1,7 @@
-from db import DB
-db = DB(username="root", password="LYRICjunjin82619@", hostname="localhost",
-            dbtype="motorkhana")
+# These details are available on the first MySQL Workbench screen
+# Usually called 'Local Instance'
+dbuser = "root" #PUT YOUR MySQL username here - usually root
+dbpass = "LYRICjunjin82619@" #PUT YOUR PASSWORD HERE
+dbhost = "localhost" 
+dbport = "3306"
+dbname = "library"
