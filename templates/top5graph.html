@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <!-- access Plotly content delivery network (CDN) charting library -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        body {
+            background-image: url('/static/racing.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    </style>
+
+
+<body>
+    <!-- This part is same as the base.html as the <script>, so I copyed it from base.html -->
+    <nav>
+        <h1>Bankside Rakaia Motorkhana Mavens - Competition event</h1>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{{ url_for('home') }}">Home</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link"  href="{{ url_for('listdrivers') }}">Drivers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('listcourses') }}">Courses</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('listoverall') }}">Overall results</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ url_for('showgraph') }}">Top 5 Drivers Graph</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('listalldetails') }}">Drivers Run Details</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+    </nav>
+    <div id="myHBarPlot" style="width:200%; max-width:1500px;"></div>
+    <!-- nvabar end -->
+
+
+
+
+    <script>
+        // Note SPACE after each fruit name so gap before horizontal bars
+        
+        var  resultList = {{ value_list | safe }};   // x-axis of the graph
+        var  nameList = {{ name_list |safe }};     // y-axis of the graph
+        // REPLACE constants above with passed in variables.
+        // Use the '|safe' Jinja filter to mark them as safe (prevents your data being html-escaped). eg,
+        // var myList = {{ list_from_py | safe }}
+
+        // Define graph data
+        const data = [{ x: resultList,  y: nameList,  type:"bar", orientation:"h", marker: {color:"#4B0082"} }];
+
+        // Define graph layout. Excluded a y-axis title as fruit names are self-explanatory.
+        const layout = {  
+            xaxis: {range: [0, 400], title: "Overall results"},  //I set a reasonble range 0-400 
+            yaxis: {
+        title: "Drivers",
+        automargin: true, // adjust margins to display complete axis labels
+        tickmode: "array", // Use an array to manually specify axis labels
+        tickvals: nameList, // Use nameList as axis labels
+    },
+            title: "Top 5 Drivers"
+        };
+
+        // Display using Plotly
+        Plotly.newPlot("myHBarPlot", data, layout);
+
+    </script>
+
+
+
+
+</body>
+</html>

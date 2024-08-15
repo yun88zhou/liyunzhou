@@ -1,0 +1,41 @@
+{% extends "admin.html" %}
+
+{% block content %}
+
+<!-- Amind Page -->
+
+<br>
+<h3>You sucessfully added an new driver!</h3>
+<br>
+
+
+<!-- This table shows the new row that user just added. -->
+<table class="table caption-top">
+    <thead>
+      <tr>
+        <th scope="col">Driver ID</th>
+        <th scope="col">First name</th>
+        <th scope="col">Surname</th>
+        <th scope="col">Date of Birth</th>
+        <th scope="col">Age</th>
+        <th scope="col">Caregiver</th>
+        <th scope="col">Car</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for row in new_driver_list %}
+            <tr>
+                {% for item in row %}
+                    <td>{{ item }}</td>
+                {% endfor %}
+
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+<!-- This button will direct user to a new form in  url_for('adddriverrun', and the DriverID will be the new_driver_id that user just entered. -->
+<button type="button" class="btn btn-info"><a href="{{ url_for('adddriverrun', new_driver_id=new_driver_id) }}">Add new runs</a></button>
+
+{% endblock %}

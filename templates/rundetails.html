@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<!-- Public user Page -->
+
+
+<br>
+<h2>Driver Run Details</h2>
+<br>
+
+<!-- This is shows individual driver's run details. -->
+<table class="table caption-top">
+    <thead>
+        <tr>
+          <th scope="col">Driver ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Run Number</th>
+          <th scope="col">Seconds</th>
+          <th scope="col">Cones</th>
+          <th scope="col">Wrong Direction(wd)</th>
+          <th scope="col">Course Name</th>
+          <th scope="col">Car Model</th>
+          <th scope="col">Drive Class</th>
+          <th scope="col">Run Totals</th>
+        </tr>
+    </thead>
+    <tbody>
+      {% for row in driver_result %}
+          <tr>
+              {% for item in row %}
+                  <td>{{ item }}</td>
+              {% endfor %}
+          </tr>
+      {% endfor %}
+    </tbody>
+</table>
+<!-- table end -->
+
+
+<!-- This button can take user back to driver list "Driver" mean  -->
+<form>
+    <input type="button" value="Go back!" onclick="history.back()">
+</form>
+<!-- button end -->
+
+<br>
+<br>
+<br>
+<br>
+{% endblock %}

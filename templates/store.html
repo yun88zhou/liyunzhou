@@ -1,0 +1,853 @@
+{% extends "admin.html" %}
+
+{% block content %}
+
+<br>
+<h2>Edit Runs by Name</h2>
+
+<h2>Test if it can go to input page. This is input page!!!
+</h2>
+
+{{run_result}}
+ 
+
+<form method="POST" action="/editrun_route" enctype="multipart/form-data">
+    <table class="table caption-top"> 
+            <thead>
+                <tr>
+                    <th>Driver ID</th>
+                    <th>Course ID</th>
+                    <th>Run Number</th>
+                    <th>Seconds</th>
+                    <th>Cones</th>
+                    <th>WD</th>                   
+                </tr>
+            </thead>
+            <tbody>
+                <!-- First row of the table -->
+                <tr>
+                    <!-- we get the "driverid" value from editruns.html as the user select a driver on that page. -->
+                    <td>
+                        <select name="driverid" required>
+                            <option value="{{ driverid }}">{{ driverid }}</option>
+                        </select>
+                    </td> 
+                    <td>
+                        <select name="course" id="course" required>
+                                {% for course in allCourseid %}
+                                    <option value="{{ course[0] }}">
+                                        "{{ course[1] }}" by {{ course[2] }} - {{ course[3] }}, {{ course[4] }} - {{ course[5] }}
+                                    </option>
+                                {% endfor %}
+                        </select>
+                    </td>
+                    <td>
+                        <select name="run_num" required>
+                            <select name="run" id="run">
+                                <option>&lt;Select a run&gt;</option>
+                                {% for course in allCourseid %}
+                                    <optgroup label="{{ course[1] }}">
+                                        {% if course[6] == "1" %}
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                        {% elseif course[6] == "2" %}
+                                            <option value="2"> 2</option>
+                                            <option value="1"> 1</option>
+                                        {% endif %}
+                                    </optgroup>
+                                {% endfor %}
+                            </select>
+                        </select>
+                    </td>
+                    <td><input type="number" min="0" max="300" id="seconds" name="seconds" placeholder="null"></td>
+                    <td><input type="number" min="0" max="20" id="cones" name="cones"  placeholder="null"></td>
+                    <td><input type="number" name="wd" value="0"></td>
+                    </td>
+                </tr>
+                <!-- second row of form for add new run -->
+                <tr>
+                    <!-- we get the "driverid" value from editruns.html as the user select a driver on that page. -->
+                    <td>
+                        <select name="driverid" required>
+                            <option value="{{ driverid }}">{{ driverid }}</option>
+                        </select>
+                    </td> 
+                    <td>
+                        <select name="course" id="course" required>
+                                {% for course in allCourseid %}
+                                    <option value="{{ course[0] }}">
+                                        "{{ course[1] }}" by {{ course[2] }} - {{ course[3] }}, {{ course[4] }} - {{ course[5] }}
+                                    </option>
+                                {% endfor %}
+                        </select>
+                    </td>
+                    <td>
+                        <select name="run_num" required>
+                            <select name="run" id="run">
+                                <option>&lt;Select a run&gt;</option>
+                                {% for course in allCourseid %}
+                                    <optgroup label="{{ course[1] }}">
+                                        {% if course[6] == "1" %}
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                        {% elseif course[6] == "2" %}
+                                            <option value="2"> 2</option>
+                                            <option value="1"> 1</option>
+                                        {% endif %}
+                                    </optgroup>
+                                {% endfor %}
+                            </select>
+                        </select>
+                    </td>
+                    <td><input type="number" min="0" max="300" id="seconds" name="seconds" placeholder="null"></td>
+                    <td><input type="number" min="0" max="20" id="cones" name="cones"  placeholder="null"></td>
+                    <td><input type="number" name="wd" value="0"></td>
+                    </td>
+                </tr>
+                <!-- third row of form for add new run -->
+                <tr>
+                    <!-- we get the "driverid" value from editruns.html as the user select a driver on that page. -->
+                    <td>
+                        <select name="driverid" required>
+                            <option value="{{ driverid }}">{{ driverid }}</option>
+                        </select>
+                    </td> 
+                    <td>
+                        <select name="course" id="course" required>
+                                {% for course in allCourseid %}
+                                    <option value="{{ course[0] }}">
+                                        "{{ course[1] }}" by {{ course[2] }} - {{ course[3] }}, {{ course[4] }} - {{ course[5] }}
+                                    </option>
+                                {% endfor %}
+                        </select>
+                    </td>
+                    <td>
+                        <select name="run_num" required>
+                            <select name="run" id="run">
+                                <option>&lt;Select a run&gt;</option>
+                                {% for course in allCourseid %}
+                                    <optgroup label="{{ course[1] }}">
+                                        {% if course[6] == "1" %}
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                        {% elseif course[6] == "2" %}
+                                            <option value="2"> 2</option>
+                                            <option value="1"> 1</option>
+                                        {% endif %}
+                                    </optgroup>
+                                {% endfor %}
+                            </select>
+                        </select>
+                    </td>
+                    <td><input type="number" min="0" max="300" id="seconds" name="seconds" placeholder="null"></td>
+                    <td><input type="number" min="0" max="20" id="cones" name="cones"  placeholder="null"></td>
+                    <td><input type="number" name="wd" value="0"></td>
+                    </td>
+                </tr>
+                <!-- fourth row of form for add new run -->
+                <tr>
+                    <!-- we get the "driverid" value from editruns.html as the user select a driver on that page. -->
+                    <td>
+                        <select name="driverid" required>
+                            <option value="{{ driverid }}">{{ driverid }}</option>
+                        </select>
+                    </td> 
+                    <td>
+                        <select name="course" id="course" required>
+                                {% for course in allCourseid %}
+                                    <option value="{{ course[0] }}">
+                                        "{{ course[1] }}" by {{ course[2] }} - {{ course[3] }}, {{ course[4] }} - {{ course[5] }}
+                                    </option>
+                                {% endfor %}
+                        </select>
+                    </td>
+                    <td>
+                        <select name="run_num" required>
+                            <select name="run" id="run">
+                                <option>&lt;Select a run&gt;</option>
+                                {% for course in allCourseid %}
+                                    <optgroup label="{{ course[1] }}">
+                                        {% if course[6] == "1" %}
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                        {% elseif course[6] == "2" %}
+                                            <option value="2"> 2</option>
+                                            <option value="1"> 1</option>
+                                        {% endif %}
+                                    </optgroup>
+                                {% endfor %}
+                            </select>
+                        </select>
+                    </td>
+                    <td><input type="number" min="0" max="300" id="seconds" name="seconds" placeholder="null"></td>
+                    <td><input type="number" min="0" max="20" id="cones" name="cones"  placeholder="null"></td>
+                    <td><input type="number" name="wd" value="0"></td>
+                    </td>
+                </tr>
+                <!-- fifth row of form for add new run -->
+                <tr>
+                    <!-- we get the "driverid" value from editruns.html as the user select a driver on that page. -->
+                    <td>
+                        <select name="driverid" required>
+                            <option value="{{ driverid }}">{{ driverid }}</option>
+                        </select>
+                    </td> 
+                    <td>
+                        <select name="course" id="course" required>
+                                {% for course in allCourseid %}
+                                    <option value="{{ course[0] }}">
+                                        "{{ course[1] }}" by {{ course[2] }} - {{ course[3] }}, {{ course[4] }} - {{ course[5] }}
+                                    </option>
+                                {% endfor %}
+                        </select>
+                    </td>
+                    <td>
+                        <select name="run_num" required>
+                            <select name="run" id="run">
+                                <option>&lt;Select a run&gt;</option>
+                                {% for course in allCourseid %}
+                                    <optgroup label="{{ course[1] }}">
+                                        {% if course[6] == "1" %}
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                        {% elseif course[6] == "2" %}
+                                            <option value="2"> 2</option>
+                                            <option value="1"> 1</option>
+                                        {% endif %}
+                                    </optgroup>
+                                {% endfor %}
+                            </select>
+                        </select>
+                    </td>
+                    <td><input type="number" min="0" max="300" id="seconds" name="seconds" placeholder="null"></td>
+                    <td><input type="number" min="0" max="20" id="cones" name="cones"  placeholder="null"></td>
+                    <td><input type="number" name="wd" value="0"></td>
+                    </td>
+                </tr>
+                <!-- sixth row of form for add new run -->
+                <tr>
+                    <!-- we get the "driverid" value from editruns.html as the user select a driver on that page. -->
+                    <td>
+                        <select name="driverid" required>
+                            <option value="{{ driverid }}">{{ driverid }}</option>
+                        </select>
+                    </td> 
+                    <td>
+                        <select name="course" id="course" required>
+                                {% for course in allCourseid %}
+                                    <option value="{{ course[0] }}">
+                                        "{{ course[1] }}" by {{ course[2] }} - {{ course[3] }}, {{ course[4] }} - {{ course[5] }}
+                                    </option>
+                                {% endfor %}
+                        </select>
+                    </td>
+                    <td>
+                        <select name="run_num" required>
+                            <select name="run" id="run">
+                                <option>&lt;Select a run&gt;</option>
+                                {% for course in allCourseid %}
+                                    <optgroup label="{{ course[1] }}">
+                                        {% if course[6] == "1" %}
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                        {% elseif course[6] == "2" %}
+                                            <option value="2"> 2</option>
+                                            <option value="1"> 1</option>
+                                        {% endif %}
+                                    </optgroup>
+                                {% endfor %}
+                            </select>
+                        </select>
+                    </td>
+                    <td><input type="number" min="0" max="300" id="seconds" name="seconds" placeholder="null"></td>
+                    <td><input type="number" min="0" max="20" id="cones" name="cones"  placeholder="null"></td>
+                    <td><input type="number" name="wd" value="0"></td>
+                    </td>
+                </tr>
+                <tr>
+                    <!-- we get the "driverid" value from editruns.html as the user select a driver on that page. -->
+                    <td>
+                        <select name="driverid" required>
+                            <option value="{{ driverid }}">{{ driverid }}</option>
+                        </select>
+                    </td> 
+                    <td>
+                        <select name="course" id="course" required>
+                                {% for course in allCourseid %}
+                                    <option value="{{ course[0] }}">
+                                        "{{ course[1] }}" by {{ course[2] }} - {{ course[3] }}, {{ course[4] }} - {{ course[5] }}
+                                    </option>
+                                {% endfor %}
+                        </select>
+                    </td>
+                    <td>
+                        <select name="run_num" required>
+                            <select name="run" id="run">
+                                <option>&lt;Select a run&gt;</option>
+                                {% for course in allCourseid %}
+                                    <optgroup label="{{ course[1] }}">
+                                        {% if course[6] == "1" %}
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                        {% elseif course[6] == "2" %}
+                                            <option value="2"> 2</option>
+                                            <option value="1"> 1</option>
+                                        {% endif %}
+                                    </optgroup>
+                                {% endfor %}
+                            </select>
+                        </select>
+                    </td>
+                    <td><input type="number" min="0" max="300" id="seconds" name="seconds" placeholder="null"></td>
+                    <td><input type="number" min="0" max="20" id="cones" name="cones"  placeholder="null"></td>
+                    <td><input type="number" name="wd" value="0"></td>
+                    </td>
+                </tr>
+                <tr>
+                    <!-- we get the "driverid" value from editruns.html as the user select a driver on that page. -->
+                    <td>
+                        <select name="driverid" required>
+                            <option value="{{ driverid }}">{{ driverid }}</option>
+                        </select>
+                    </td> 
+                    <td>
+                        <select name="course" id="course" required>
+                                {% for course in allCourseid %}
+                                    <option value="{{ course[0] }}">
+                                        "{{ course[1] }}" by {{ course[2] }} - {{ course[3] }}, {{ course[4] }} - {{ course[5] }}
+                                    </option>
+                                {% endfor %}
+                        </select>
+                    </td>
+                    <td>
+                        <select name="run_num" required>
+                            <select name="run" id="run">
+                                <option>&lt;Select a run&gt;</option>
+                                {% for course in allCourseid %}
+                                    <optgroup label="{{ course[1] }}">
+                                        {% if course[6] == "1" %}
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                        {% elseif course[6] == "2" %}
+                                            <option value="2"> 2</option>
+                                            <option value="1"> 1</option>
+                                        {% endif %}
+                                    </optgroup>
+                                {% endfor %}
+                            </select>
+                        </select>
+                    </td>
+                    <td><input type="number" min="0" max="300" id="seconds" name="seconds" placeholder="null"></td>
+                    <td><input type="number" min="0" max="20" id="cones" name="cones"  placeholder="null"></td>
+                    <td><input type="number" name="wd" value="0"></td>
+                    </td>
+                </tr>
+                <tr>
+                    <!-- we get the "driverid" value from editruns.html as the user select a driver on that page. -->
+                    <td>
+                        <select name="driverid" required>
+                            <option value="{{ driverid }}">{{ driverid }}</option>
+                        </select>
+                    </td> 
+                    <td>
+                        <select name="course" id="course" required>
+                                {% for course in allCourseid %}
+                                    <option value="{{ course[0] }}">
+                                        "{{ course[1] }}" by {{ course[2] }} - {{ course[3] }}, {{ course[4] }} - {{ course[5] }}
+                                    </option>
+                                {% endfor %}
+                        </select>
+                    </td>
+                    <td>
+                        <select name="run_num" required>
+                            <select name="run" id="run">
+                                <option>&lt;Select a run&gt;</option>
+                                {% for course in allCourseid %}
+                                    <optgroup label="{{ course[1] }}">
+                                        {% if course[6] == "1" %}
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                        {% elseif course[6] == "2" %}
+                                            <option value="2"> 2</option>
+                                            <option value="1"> 1</option>
+                                        {% endif %}
+                                    </optgroup>
+                                {% endfor %}
+                            </select>
+                        </select>
+                    </td>
+                    <td><input type="number" min="0" max="300" id="seconds" name="seconds" placeholder="null"></td>
+                    <td><input type="number" min="0" max="20" id="cones" name="cones"  placeholder="null"></td>
+                    <td><input type="number" name="wd" value="0"></td>
+                    </td>
+                </tr>
+                <tr>
+                    <!-- we get the "driverid" value from editruns.html as the user select a driver on that page. -->
+                    <td>
+                        <select name="driverid" required>
+                            <option value="{{ driverid }}">{{ driverid }}</option>
+                        </select>
+                    </td> 
+                    <td>
+                        <select name="course" id="course" required>
+                                {% for course in allCourseid %}
+                                    <option value="{{ course[0] }}">
+                                        "{{ course[1] }}" by {{ course[2] }} - {{ course[3] }}, {{ course[4] }} - {{ course[5] }}
+                                    </option>
+                                {% endfor %}
+                        </select>
+                    </td>
+                    <td>
+                        <select name="run_num" required>
+                            <select name="run" id="run">
+                                <option>&lt;Select a run&gt;</option>
+                                {% for course in allCourseid %}
+                                    <optgroup label="{{ course[1] }}">
+                                        {% if course[6] == "1" %}
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                        {% elseif course[6] == "2" %}
+                                            <option value="2"> 2</option>
+                                            <option value="1"> 1</option>
+                                        {% endif %}
+                                    </optgroup>
+                                {% endfor %}
+                            </select>
+                        </select>
+                    </td>
+                    <td><input type="number" min="0" max="300" id="seconds" name="seconds" placeholder="null"></td>
+                    <td><input type="number" min="0" max="20" id="cones" name="cones"  placeholder="null"></td>
+                    <td><input type="number" name="wd" value="0"></td>
+                    </td>
+                </tr>
+                <tr>
+                    <!-- we get the "driverid" value from editruns.html as the user select a driver on that page. -->
+                    <td>
+                        <select name="driverid" required>
+                            <option value="{{ driverid }}">{{ driverid }}</option>
+                        </select>
+                    </td> 
+                    <td>
+                        <select name="course" id="course" required>
+                                {% for course in allCourseid %}
+                                    <option value="{{ course[0] }}">
+                                        "{{ course[1] }}" by {{ course[2] }} - {{ course[3] }}, {{ course[4] }} - {{ course[5] }}
+                                    </option>
+                                {% endfor %}
+                        </select>
+                    </td>
+                    <td>
+                        <select name="run_num" required>
+                            <select name="run" id="run">
+                                <option>&lt;Select a run&gt;</option>
+                                {% for course in allCourseid %}
+                                    <optgroup label="{{ course[1] }}">
+                                        {% if course[6] == "1" %}
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                        {% elseif course[6] == "2" %}
+                                            <option value="2"> 2</option>
+                                            <option value="1"> 1</option>
+                                        {% endif %}
+                                    </optgroup>
+                                {% endfor %}
+                            </select>
+                        </select>
+                    </td>
+                    <td><input type="number" min="0" max="300" id="seconds" name="seconds" placeholder="null"></td>
+                    <td><input type="number" min="0" max="20" id="cones" name="cones"  placeholder="null"></td>
+                    <td><input type="number" name="wd" value="0"></td>
+                    </td>
+                </tr>
+                <tr>
+                    <!-- we get the "driverid" value from editruns.html as the user select a driver on that page. -->
+                    <td>
+                        <select name="driverid" required>
+                            <option value="{{ driverid }}">{{ driverid }}</option>
+                        </select>
+                    </td> 
+                    <td>
+                        <select name="course" id="course" required>
+                                {% for course in allCourseid %}
+                                    <option value="{{ course[0] }}">
+                                        "{{ course[1] }}" by {{ course[2] }} - {{ course[3] }}, {{ course[4] }} - {{ course[5] }}
+                                    </option>
+                                {% endfor %}
+                        </select>
+                    </td>
+                    <td>
+                        <select name="run_num" required>
+                            <select name="run" id="run">
+                                <option>&lt;Select a run&gt;</option>
+                                {% for course in allCourseid %}
+                                    <optgroup label="{{ course[1] }}">
+                                        {% if course[6] == "1" %}
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                        {% elseif course[6] == "2" %}
+                                            <option value="2"> 2</option>
+                                            <option value="1"> 1</option>
+                                        {% endif %}
+                                    </optgroup>
+                                {% endfor %}
+                            </select>
+                        </select>
+                    </td>
+                    <td><input type="number" min="0" max="300" id="seconds" name="seconds" placeholder="null"></td>
+                    <td><input type="number" min="0" max="20" id="cones" name="cones"  placeholder="null"></td>
+                    <td><input type="number" name="wd" value="0"></td>
+                    </td>
+                </tr>
+            </tbody>
+    </table>
+    <button type="submit">Submit</button>
+</form>
+
+{% endblock %}
+#get all the values from Driverid list by for loop
+        current_Driverid=[]
+        for i in range(len(Driverid)):
+            current_Driverid.append(Driverid[i])
+
+        #get all the values from courseID list by for loop
+        current_courseID=[]
+        for i in range(len(courseID)):
+            current_courseID.append(courseID[i])
+
+        #get all the values from runNum list by for loop
+        current_runNum=[]
+        for i in range(len(runNum)):
+            current_runNum.append(runNum[i])
+             
+        #get all the values from seconds list by for loop
+        current_seconds=[]
+        for i in range(len(seconds)):
+            if seconds[i]:
+                try:
+                    seconds[i] = float(seconds[i])
+                except ValueError:
+                    seconds[i] = None
+            else:
+                seconds[i] = None       
+            current_seconds.append(seconds[i])
+        
+        #get all the values from cones list by for loop
+        current_cones=[]
+        for i in range(len(cones)):
+            if cones[i]:
+                try:
+                    cones[i] = int(cones[i])
+                except ValueError:
+                    cones[i] = None
+            else:
+                cones[i] = None
+            current_cones.append(cones[i])
+        
+        #get all the values from wd list by for loop
+        current_wd=[]
+        for i in range(len(wd)):
+            if not wd[i]:
+                wd[i]=0    
+            current_wd.append(wd[i])
+
+        
+        connection = getCursor()
+        sql = "UPDATE motorkhana.run SET seconds = %s, cones = %s, wd = %s WHERE (dr_id = %s) and (crs_id = %s) and (run_num = %s)"
+        data = [(current_seconds[0], current_cones[0], current_wd[0], current_Driverid[0], current_courseID[0], current_runNum[0]),
+                (current_seconds[1], current_cones[1], current_wd[1], current_Driverid[1], current_courseID[1], current_runNum[1]),
+                (current_seconds[2], current_cones[2], current_wd[2], current_Driverid[2], current_courseID[2], current_runNum[2]),
+                (current_seconds[3], current_cones[3], current_wd[3], current_Driverid[3], current_courseID[3], current_runNum[3]),
+                (current_seconds[4], current_cones[4], current_wd[4], current_Driverid[4], current_courseID[4], current_runNum[4]),
+                (current_seconds[5], current_cones[5], current_wd[5], current_Driverid[5], current_courseID[5], current_runNum[5]),
+                (current_seconds[6], current_cones[6], current_wd[6], current_Driverid[6], current_courseID[6], current_runNum[6]),
+                (current_seconds[7], current_cones[7], current_wd[7], current_Driverid[7], current_courseID[7], current_runNum[7]),
+                (current_seconds[8], current_cones[8], current_wd[8], current_Driverid[8], current_courseID[8], current_runNum[8]),
+                (current_seconds[9], current_cones[9], current_wd[9], current_Driverid[9], current_courseID[9], current_runNum[9]),
+                (current_seconds[10], current_cones[10], current_wd[10], current_Driverid[10], current_courseID[10], current_runNum[10]),
+                (current_seconds[11], current_cones[11], current_wd[11], current_Driverid[11], current_courseID[11], current_runNum[11])
+                ]
+        for item in data:
+            connection.execute(sql, item)
+        connection.execute("SELECT * FROM run WHERE dr_id = %s;", (current_Driverid[0],))
+        new_run_list = connection.fetchall()
+        print(new_run_list)
+        return render_template("editruninput.html",new_run_list=new_run_list)
+
+
+
+        <form method="POST" action="/admin/adddriverrun/<new_driver_id>" enctype="multipart/form-data">
+            <table class="table caption-top"> 
+                    <thead>
+                        <tr>
+                            <th>Driver ID</th>
+                            <th>Course ID</th>
+                            <th>Run Number</th>
+                            <th>Seconds</th>
+                            <th>Cones</th>
+                            <th>WD</th>  
+                            <h1>test</h1>                
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- First row of the table -->
+                        <tr>
+                            <!-- we get the "driverid" value from editruns.html as the user select a driver on that page. -->
+                            <td>
+                                <select name="driverid" required>
+                                    <option value="{{ driverid }}">{{ driverid }}</option>
+                                </select>
+                            </td> 
+                            <td>
+                                <select name="courseid" required>
+                                    <option value="{{ run_result[0][1] }}">{{ run_result[0][1] }}</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select name="run_num" required>
+                                    <option value="{{ run_result[0][2] }}">{{ run_result[0][2] }}</option>
+                                </select>
+                            </td>
+                            <td><input type="number" min="0" max="300" id="seconds" name="seconds" placeholder="null"></td>
+                            <td><input type="number" min="0" max="20" id="cones" name="cones"  placeholder="null"></td>
+                            <td><input type="number" name="wd" value="0"></td>
+                        </tr>
+                        <!-- second row of form for add new run -->
+                        <tr>
+                            <!-- we get the "driverid" value from editruns.html as the user select a driver on that page. -->
+                            <td>
+                                <select name="driverid" required>
+                                    <option value="{{ driverid }}">{{ driverid }}</option>
+                                </select>
+                            </td> 
+                            <td>
+                                <select name="courseid" required>
+                                    <option value="{{ run_result[1][1] }}">{{ run_result[1][1] }}</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select name="run_num" required>
+                                    <option value="{{ run_result[1][2] }}">{{ run_result[1][2] }}</option>
+                                </select>
+                            </td>                            
+                            <td><input type="number" min="0" max="300" id="seconds" name="seconds" placeholder="null"></td>
+                            <td><input type="number" min="0" max="20" id="cones" name="cones"  placeholder="null"></td>
+                            <td><input type="number" name="wd" value="0"></td>
+                        </tr>
+                        <!-- third row of form for add new run -->
+                        <tr>
+                            <!-- we get the "driverid" value from editruns.html as the user select a driver on that page. -->
+                            <td>
+                                <select name="driverid" required>
+                                    <option value="{{ driverid }}">{{ driverid }}</option>
+                                </select>
+                            </td> 
+                            <td>
+                                <select name="courseid" required>
+                                    <option value="{{ run_result[2][1] }}">{{ run_result[2][1] }}</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select name="run_num" required>
+                                    <option value="{{ run_result[2][2] }}">{{ run_result[2][2] }}</option>
+                                </select>
+                            </td>
+                            <td><input type="number" min="0" max="300" id="seconds" name="seconds" placeholder="null"></td>
+                            <td><input type="number" min="0" max="20" id="cones" name="cones"  placeholder="null"></td>
+                            <td><input type="number" name="wd" value="0"></td>
+                        </tr>
+                        <!-- fourth row of form for add new run -->
+                        <tr>
+                            <!-- we get the "driverid" value from editruns.html as the user select a driver on that page. -->
+                            <td>
+                                <select name="driverid" required>
+                                    <option value="{{ driverid }}">{{ driverid }}</option>
+                                </select>
+                            </td> 
+                            <td>
+                                <select name="courseid" required>
+                                    <option value="{{ run_result[3][1] }}">{{ run_result[3][1] }}</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select name="run_num" required>
+                                    <option value="{{ run_result[3][2] }}">{{ run_result[3][2] }}</option>
+                                </select>
+                            </td>
+                            <td><input type="number" min="0" max="300" id="seconds" name="seconds" placeholder="null"></td>
+                            <td><input type="number" min="0" max="20" id="cones" name="cones"  placeholder="null"></td>
+                            <td><input type="number" name="wd" value="0"></td>
+                        </tr>
+                        <!-- fifth row of form for add new run -->
+                        <tr>
+                            <!-- we get the "driverid" value from editruns.html as the user select a driver on that page. -->
+                            <td>
+                                <select name="driverid" required>
+                                    <option value="{{ driverid }}">{{ driverid }}</option>
+                                </select>
+                            </td> 
+                            <td>
+                                <select name="courseid" required>
+                                    <option value="{{ run_result[4][1] }}">{{ run_result[4][1] }}</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select name="run_num" required>
+                                    <option value="{{ run_result[4][2] }}">{{ run_result[4][2] }}</option>
+                                </select>
+                            </td>
+                            <td><input type="number" min="0" max="300" id="seconds" name="seconds" placeholder="null"></td>
+                            <td><input type="number" min="0" max="20" id="cones" name="cones"  placeholder="null"></td>
+                            <td><input type="number" name="wd" value="0"></td>
+                        </tr>
+                        <!-- sixth row of form for add new run -->
+                        <tr>
+                            <!-- we get the "driverid" value from editruns.html as the user select a driver on that page. -->
+                            <td>
+                                <select name="driverid" required>
+                                    <option value="{{ driverid }}">{{ driverid }}</option>
+                                </select>
+                            </td> 
+                            <td>
+                                <select name="courseid" required>
+                                    <option value="{{ run_result[5][1] }}">{{ run_result[5][1] }}</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select name="run_num" required>
+                                    <option value="{{ run_result[5][2] }}">{{ run_result[5][2] }}</option>
+                                </select>
+                            </td>
+                            <td><input type="number" min="0" max="300" id="seconds" name="seconds" placeholder="null"></td>
+                            <td><input type="number" min="0" max="20" id="cones" name="cones"  placeholder="null"></td>
+                            <td><input type="number" name="wd" value="0"></td>
+                        </tr>
+                        <tr>
+                            <!-- we get the "driverid" value from editruns.html as the user select a driver on that page. -->
+                            <td>
+                                <select name="driverid" required>
+                                    <option value="{{ driverid }}">{{ driverid }}</option>
+                                </select>
+                            </td> 
+                            <td>
+                                <select name="courseid" required>
+                                    <option value="{{ run_result[6][1] }}">{{ run_result[6][1] }}</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select name="run_num" required>
+                                    <option value="{{ run_result[6][2] }}">{{ run_result[6][2] }}</option>
+                                </select>
+                            </td>
+                            <td><input type="number" min="0" max="300" id="seconds" name="seconds" placeholder="null"></td>
+                            <td><input type="number" min="0" max="20" id="cones" name="cones"  placeholder="null"></td>
+                            <td><input type="number" name="wd" value="0"></td>
+                        </tr>
+                        <tr>
+                            <!-- we get the "driverid" value from editruns.html as the user select a driver on that page. -->
+                            <td>
+                                <select name="driverid" required>
+                                    <option value="{{ driverid }}">{{ driverid }}</option>
+                                </select>
+                            </td> 
+                            <td>
+                                <select name="courseid" required>
+                                    <option value="{{ run_result[7][1] }}">{{ run_result[4][1] }}</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select name="run_num" required>
+                                    <option value="{{ run_result[7][2] }}">{{ run_result[4][2] }}</option>
+                                </select>
+                            </td>
+                            <td><input type="number" min="0" max="300" id="seconds" name="seconds" placeholder="null"></td>
+                            <td><input type="number" min="0" max="20" id="cones" name="cones"  placeholder="null"></td>
+                            <td><input type="number" name="wd" value="0"></td>
+                        </tr>
+                        <tr>
+                            <!-- we get the "driverid" value from editruns.html as the user select a driver on that page. -->
+                            <td>
+                                <select name="driverid" required>
+                                    <option value="{{ driverid }}">{{ driverid }}</option>
+                                </select>
+                            </td> 
+                            <td>
+                                <select name="courseid" required>
+                                    <option value="{{ run_result[8][1] }}">{{ run_result[8][1] }}</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select name="run_num" required>
+                                    <option value="{{ run_result[8][2] }}">{{ run_result[8][2] }}</option>
+                                </select>
+                            </td>
+                            <td><input type="number" min="0" max="300" id="seconds" name="seconds" placeholder="null"></td>
+                            <td><input type="number" min="0" max="20" id="cones" name="cones"  placeholder="null"></td>
+                            <td><input type="number" name="wd" value="0"></td>
+                        </tr>
+                        <tr>
+                            <!-- we get the "driverid" value from editruns.html as the user select a driver on that page. -->
+                            <td>
+                                <select name="driverid" required>
+                                    <option value="{{ driverid }}">{{ driverid }}</option>
+                                </select>
+                            </td> 
+                            <td>
+                                <select name="courseid" required>
+                                    <option value="{{ run_result[9][1] }}">{{ run_result[9][1] }}</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select name="run_num" required>
+                                    <option value="{{ run_result[9][2] }}">{{ run_result[9][2] }}</option>
+                                </select>
+                            </td>
+                            <td><input type="number" min="0" max="300" id="seconds" name="seconds" placeholder="null"></td>
+                            <td><input type="number" min="0" max="20" id="cones" name="cones"  placeholder="null"></td>
+                            <td><input type="number" name="wd" value="0"></td>
+                        </tr>
+                        <tr>
+                            <!-- we get the "driverid" value from editruns.html as the user select a driver on that page. -->
+                            <td>
+                                <select name="driverid" required>
+                                    <option value="{{ driverid }}">{{ driverid }}</option>
+                                </select>
+                            </td> 
+                            <td>
+                                <select name="courseid" required>
+                                    <option value="{{ run_result[10][1] }}">{{ run_result[10][1] }}</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select name="run_num" required>
+                                    <option value="{{ run_result[10][2] }}">{{ run_result[10][2] }}</option>
+                                </select>
+                            </td>
+                            <td><input type="number" min="0" max="300" id="seconds" name="seconds" placeholder="null"></td>
+                            <td><input type="number" min="0" max="20" id="cones" name="cones"  placeholder="null"></td>
+                            <td><input type="number" name="wd" value="0"></td>
+                        </tr>
+                        <tr>
+                            <!-- we get the "driverid" value from editruns.html as the user select a driver on that page. -->
+                            <td>
+                                <select name="driverid" required>
+                                    <option value="{{ driverid }}">{{ driverid }}</option>
+                                </select>
+                            </td> 
+                            <td>
+                                <select name="courseid" required>
+                                    <option value="{{ run_result[11][1] }}">{{ run_result[11][1] }}</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select name="run_num" required>
+                                    <option value="{{ run_result[11][2] }}">{{ run_result[11][2] }}</option>
+                                </select>
+                            </td>
+                            <td><input type="number" min="0" max="300" id="seconds" name="seconds" placeholder="null"></td>
+                            <td><input type="number" min="0" max="20" id="cones" name="cones"  placeholder="null"></td>
+                            <td><input type="number" name="wd" value="0"></td>
+                        </tr>
+                    </tbody>
+            </table>
+            <button type="submit">Submit</button>
+        </form>

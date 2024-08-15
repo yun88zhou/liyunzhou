@@ -1,0 +1,38 @@
+{% extends "admin.html" %}
+
+{% block content %}
+
+
+<!-- Amind Page -->
+
+
+<br>
+<h2>Junior Driver List</h2>
+<br>
+
+<!-- This table displays that junior driver list. -->
+<table class="table caption-top">
+    <thead>
+        <tr>
+            <th scope="col">Driver ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Date of Birth</th>
+            <th scope="col">Age</th>
+            <th scope="col">Caregiver</th>
+            <th scope="col">Car</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in junior_driver_list %}
+          <tr>
+              {% for item in row %}
+                <td>{{item}}</td>
+              {% endfor %}
+          </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<!-- Table end -->
+
+{% endblock %}

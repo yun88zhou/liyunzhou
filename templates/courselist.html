@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<!-- Public user Page -->
+
+
+
+<br>
+<h2>All Courses</h2>
+<br>
+
+<!-- Here display the courselist page. The course's images have been displayed.-->
+<table>
+    <tr>
+        <th>Course</th>
+        <th>Name</th>
+        <th>Map diagram</th>
+    </tr>
+    {% for course in course_list %}
+        <tr>
+            {% for field in course %}
+                <td>
+                    {% if loop.index ==3 %}<br>
+                    <img src="{{ url_for('static', filename=field) }}" alt="Map Graph">
+                    {% else %}
+                        {{field}}
+                    {% endif %}
+                </td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+</table>
+<!-- table end -->
+
+{% endblock %}
+
+
+
+

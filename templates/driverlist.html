@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+
+<!-- Public user Page -->
+
+
+
+<br>
+<h2>Drivers List</h2>
+<br>
+
+<!-- Here shows the driver list for user -->
+<table class="table caption-top">
+    <thead>
+        <tr>
+            <th scope="col">Driver ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Date of Birth</th>
+            <th scope="col">Age</th>
+            <th scope="col">Caregiver</th>
+            <th scope="col">Model</th>
+            <th scope="col">Drive Class</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in driver_list %}
+            <tr {% if item[3] is not none and item[3] < 25 %} class="table-warning" {% endif %} >
+                {% for column in item %}
+
+                    <!-- Here on the second column which is driver name. It is also buttons which can link to the driver run details. -->
+                    {% if loop.index0 == 1 %}
+                      <td><a href="rundetails?drivername={{column}}">{{ column }}</a></td>
+                    {% else %}
+                    <td>{{column}}</td>
+                    {% endif %}
+                    <!-- link code end -->
+
+                {% endfor %}
+            </tr>
+
+        {% endfor %}
+    </tbody>
+</table>
+<!-- table end -->
+
+{% endblock %}
+
+
+

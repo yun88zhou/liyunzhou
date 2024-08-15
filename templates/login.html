@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <style>
+        body {
+            background-image: url('/static/login.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        h1, form {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<!-- User can choose an option to enter.  -->
+<body>
+    <h1>Login</h1>
+    <form method="POST" action="/">
+        <button type="submit" name="user">Login as User</button>
+        <button type="submit" name="admin">Login as Admin</button>
+    </form>
+</body>
+</html>
+

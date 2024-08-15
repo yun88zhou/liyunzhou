@@ -1,0 +1,48 @@
+{% extends "admin.html" %}
+
+{% block content %}
+
+
+<!-- Amind Page -->
+
+
+<br>
+<h2>Search Driver List by Name</h2>
+<br>
+
+<!-- admin user can search driver list by entering driver name. This is the search bar form -->
+<form id="search_form" name="search_form" action="/admin/searchdriverlist/filter" method="post">
+    <p>
+        <label>Search: </label>
+        <input type="text" value="{{drivers}}" name="driver">
+        <input type="submit" value="Filter" />
+        <input type="reset" value="Cancel" />
+    </p>
+</form>
+<!-- select bar end -->
+
+<!-- Table displays the driver details of the driver that user entered above.  -->
+<table class="table caption-top">
+    <thead>
+      <tr>
+        <th scope="col">Driver ID</th>
+        <th scope="col">Surname</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Date of Birth</th>
+        <th scope="col">Age</th>
+        <th scope="col">Caregiver</th>
+        <th scope="col">Car</th>
+    </thead>
+    <tbody>
+        {% for row in driver_list %}
+            <tr>
+                {% for item in row %}
+                    <td>{{ item }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<!-- table end -->
+
+{% endblock %}

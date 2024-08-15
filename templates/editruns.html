@@ -1,0 +1,67 @@
+{% extends "admin.html" %}
+
+{% block content %}
+
+
+<!-- Amind Page -->
+
+
+<br>
+<h2>Edit Runs</h2>
+<br>
+
+<!-- This is a select bar for user to choose a name for editing. The select bar options are from driver table in database.-->
+<form id="select_form" name="select_form" action="/admin/editruns" method="POST">
+    <p>
+        <label>Select a driver to edit runs</label>
+        <select name="selected_driver" id="selected_driver" onchange="this.form.submit()">    <!-- The onchange attribute is very simple Javascript to automatically submit the form when the selection changes -->
+            <option>&lt;Select A Driver&gt;</option>
+            {% for driver in driver_result %}
+                    {% if driver[0]==driverid %}
+                        <option value="{{driver[0]}}" selected>
+                            {{driver[0]}} {{driver[2]}} {{driver[1]}}
+                        </option>
+                    {% else %}
+                        <option value="{{driver[0]}}">
+                            {{driver[0]}} {{driver[2]}} {{driver[1]}}
+                        </option>
+                    {% endif %}
+            {% endfor %}
+        </select>
+    </p>
+</form>
+<!-- select button end -->
+
+<!-- When user select a certain name from the above select bar, that this code will be seen. This is a edit button -->
+{% for driver in driver_result %}
+        {% if driver[0]==driverid %}
+        <button type="button" class="btn btn-info"><a href="/editrun_name">Edit this driver's run details</a></button>
+        {% endif  %}
+{% endfor %}
+<!-- button end -->
+
+<!-- This table shows all the run details of the driver that user chose from select bar. -->
+<table class="table caption-top">
+    <thead>
+      <tr>
+        <th scope="col">Driver ID</th>
+        <th scope="col">Course ID</th>
+        <th scope="col">Run Number</th>
+        <th scope="col">Seconds</th>
+        <th scope="col">Cones</th>
+        <th scope="col">Wrong Direction(wd)</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in run_result %}
+          <tr>
+              {% for item in row %}
+                  <td>{{ item }}</td>
+              {% endfor %}
+
+          </tr>
+      {% endfor %}
+    </tbody>
+</table>
+<!-- Table end -->
+{% endblock %}

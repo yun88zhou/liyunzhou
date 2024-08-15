@@ -1,0 +1,43 @@
+{% extends "admin.html" %}
+
+{% block content %}
+
+
+<!-- Amind Page -->
+
+
+<br>
+<h2>Edit Runs For Your Course.</h2>
+<br>
+{{course_result}}
+
+<!-- This form also a table display as a table for user to edit. I hard-coded as running out of time. -->
+<form method="POST" action="/editrun_course" enctype="multipart/form-data">
+    <!-- drive id ,  course result, run number will be disabled to edit-->
+        <label for="driverID"> Driver ID </lable> 
+        <input  value={{course_result[0][0]}}  type="text" id="driverID" name="driverID" disabled> <br>
+        <label for="courseID"> course ID </lable> 
+        <input  value={{course_result[0][1]}}  type="text" id="courseID" name="courseID" disabled > <br>
+        <label for="runNumber"> Run Number </lable> 
+        <input  value={{course_result[0][2]}}  type="text" id="runNumber" name="runNumber" disabled> <br>
+<!-- user can put new data for seconds, cons, wrong directon -->
+        <label for="Seconds"> Seconds </lable> 
+        <input  value={{course_result[0][3]}}  type="text" id="Seconds" name="Seconds"> <br>
+
+        <label for="Cones"> Cones</lable> 
+        <input  value={{course_result[0][4]}}  type="text" id="Cones" name="Cones"> <br>
+        <label for="WD"> Wrong Direction </lable> 
+        <input  value={{course_result[0][5]}} type="number"   id="WD" name="WD" > <br>
+
+        <!--hidden value from html but pass to form submit-->
+        <input  value={{course_result[0][0]}}  type="hidden" id="driverid" name="driverid" > <br>
+       
+        <input  value={{course_result[0][1]}}  type="hidden" id="courseid" name="courseid"  > <br>
+       
+        <input  value={{course_result[0][2]}}  type="hidden" id="run_number" name="run_number" > <br>
+
+        <input   type="Submit" >
+</form>
+<!-- table end -->
+
+{% endblock %}

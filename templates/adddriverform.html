@@ -1,0 +1,155 @@
+{% extends "admin.html" %}
+
+{% block content %}
+
+
+<!-- Amind Page -->
+
+
+<br>
+<h2>Add Driver Data</h2>
+<br>
+
+
+<!-- empty form for adding new driver information -->
+<table class="table caption-top">
+    <form method="POST" action="{{ url_for('adddriver') }}">
+        <tr>
+            <td>
+                <label for="driver_id">Driver ID:</label>
+            </td>
+            <td>
+                <input type="text" name="driver_id" required>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="first_name">First Name:</label>
+            </td>
+            <td>
+                <input type="text" name="first_name" required>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="surname">Surname:</label>
+            </td>
+            <td>
+                <input type="text" name="surname" required>
+            </td>
+        </tr>
+
+
+        <!-- if age_confirmation is young, this part will be shown for adding 12-16 years old driver-->
+        {% if age_confirmation == "young" %}
+            <tr>
+                <td><label for="dob">Date of Birth:</label></td>
+                <td><input type="date" id="dob" name="dob" /></td>
+            </tr>
+            <tr>
+                <td>Age:</td>
+                <td>automatically calculate(shown in new driver list)</td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="caregiver">Caregiver:</label>
+                </td>
+                <td>
+                    <select name="caregiver" id="caregiver" required>
+                        {% for driver in caregiverList %} 
+                            <option value="{{driver[0]}}">{{driver[0]}}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+        {% endif %}
+        <!-- part end -->
+
+        <!-- if age_confirmation is youngadult, this part will be shown for adding 17-25 years old driver-->
+        {% if age_confirmation == "youngadult" %}
+            <tr>
+                <td><label for="dob">Date of Birth:</label></td>
+                <td><input type="date" id="dob" name="dob" /></td>
+            </tr>
+            <tr>
+                <td><label for="age">Age:</label></td>
+                <td>
+                    Automatically calculate
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="caregiver">Caregiver:</label>
+                </td>
+                <td>
+                    <select name="caregiver" id="caregiver" required>
+                            <option value="None">Null</option>
+                    </select>
+                </td>
+            </tr>
+        {% endif %}
+        <!-- part end -->
+
+        <!-- if age_confirmation is adult, this part will be shown for adding over 25 years old driver-->
+        {% if age_confirmation == "adult" %}
+            <tr>
+                <td>
+                    <label for="dob">Date of Birth:</label>
+                </td>
+                <td>
+                    <select name="dob" id="dob" >
+                            <option value="None">Null</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="age">Age:</label>
+                </td>
+                <td>
+                    <select name="age" id="age" required>
+                            <option value="None">Null</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="caregiver">Caregiver:</label>
+                </td>
+                <td>
+                    <select name="caregiver" id="caregiver" required>
+                            <option value="None">Null</option>
+                    </select>
+                </td>
+            </tr>
+        {% endif %}
+        <!-- part end -->
+
+        <tr>
+            <td>
+                <label for="car">Car:</label>
+            </td>
+            <td>
+                <select name="car" required>
+                    <option value="11">11</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="20">20</option>
+                    <option value="22">22</option>
+                    <option value="31">31</option>
+                    <option value="36">36</option>
+                    <option value="44">44</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: center;">
+                <button class="btn btn-primary" type="submit">Add</button>
+            </td>
+        </tr>
+    </form>
+<!-- form end -->
+
+</table>
+
+{% endblock %}

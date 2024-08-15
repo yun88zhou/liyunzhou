@@ -1,0 +1,52 @@
+{% extends "admin.html" %}
+
+{% block content %}
+
+
+<!-- Amind Page -->
+
+
+<br>
+<h2>Search Run List by Driver Name</h2>
+<br>
+
+<!-- admin user can search run details by entering driver name. This is the search bar form -->
+<form id="searchrun_form" name="searchrun_form" action="/admin/searchrunlist/filter" method="post">
+    <p>
+        <label>Search: </label>
+        <input type="text" value="{{drivers}}" name="driver">
+        <input type="submit" value="Filter" />
+        <input type="reset" value="Cancel" />
+    </p>
+</form>
+<!-- seach bar end -->
+
+<!-- Table displays the run details of the driver that user entered above.  -->
+<table class="table caption-top">
+    <thead>
+      <tr>
+        <th scope="col">Driver ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Run Number</th>
+        <th scope="col">Seconds</th>
+        <th scope="col">Cones</th>
+        <th scope="col">Wrong Direction(wd)</th>
+        <th scope="col">Course Name</th>
+        <th scope="col">Car Model</th>
+        <th scope="col">Drive Class</th>
+        <th scope="col">Run Totals</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in driverRun_list %}
+          <tr>
+              {% for item in row %}
+                  <td>{{ item }}</td>
+              {% endfor %}
+          </tr>
+      {% endfor %}
+  </tbody>
+</table>
+<!-- table end -->
+
+{% endblock %}

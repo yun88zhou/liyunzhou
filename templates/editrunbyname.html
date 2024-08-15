@@ -1,0 +1,381 @@
+{% extends "admin.html" %}
+
+{% block content %}
+
+
+<!-- Amind Page -->
+editrun_name
+
+<br>
+<h2>Edit Runs For Your Driver.</h2>
+<br>
+
+<!-- This form also a table display as a table for user to edit. I hard-coded as running out of time. -->
+<form method="POST" action="/editrun_name" enctype="multipart/form-data">
+    <table class="table caption-top"> 
+            <thead>
+                <tr>
+                    <th>Driver ID</th>
+                    <th>Course ID</th>
+                    <th>Run Number</th>
+                    <th>Seconds</th>
+                    <th>Cones</th>
+                    <th>WD</th>                   
+                </tr>
+            </thead>
+            <tbody>
+                <!-- First row of the table -->
+                <tr>
+                    <!-- we get the "driverid" value from editruns.html as the user select a driver on that page. -->
+                    <td>
+                        <select name="driverid" required>
+                            <option value="{{ driverid }}">{{ driverid }}</option>
+                        </select>
+                    </td> 
+                    <td>
+                        <select name="courseid" required>
+                            <option value="{{ run_result[0][1] }}">{{ run_result[0][1] }}</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="run_num" required>
+                            <option value="{{ run_result[0][2] }}">{{ run_result[0][2] }}</option>
+                        </select>
+                    </td>
+                
+                    <td>
+                        <input type="number" min="0" max="300" step="any" name="seconds" value="{{ run_result[0][3] if seconds else run_result[0][3] }}">
+                    </td>
+                    <td>
+                        <input type="number" min="0" max="20" name="cones" value="{{ run_result[0][4] if seconds else run_result[0][4] }}">
+                    </td>
+                    <td>
+                        <input type="number" min="0" max="1" name="wd" value="{{ run_result[0][5] if seconds else run_result[0][5] }}">
+                    </td>
+                </tr>
+                <!-- second row of form for add new run -->
+                <tr>
+                    <!-- we get the "driverid" value from editruns.html as the user select a driver on that page. -->
+                    <td>
+                        <select name="driverid" required>
+                            <option value="{{ driverid }}">{{ driverid }}</option>
+                        </select>
+                    </td> 
+                    <td>
+                        <select name="courseid" required>
+                            <option value="{{ run_result[1][1] }}">{{ run_result[1][1] }}</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="run_num" required>
+                            <option value="{{ run_result[1][2] }}">{{ run_result[1][2] }}</option>
+                        </select>
+                    </td>
+                
+                    <td>
+                        <input type="number" min="0" max="300" step="any" name="seconds" value="{{ run_result[1][3] if seconds else run_result[1][3] }}">
+                    </td>
+                    <td>
+                        <input type="number" min="0" max="20" name="cones" value="{{ run_result[1][4] if seconds else run_result[1][4] }}">
+                    </td>
+                    <td>
+                        <input type="number" min="0" max="1" name="wd" value="{{ run_result[1][5] if seconds else run_result[1][5] }}">
+                    </td>
+                </tr>
+                <!-- third row of form for add new run -->
+                <tr>
+                    <!-- we get the "driverid" value from editruns.html as the user select a driver on that page. -->
+                    <td>
+                        <select name="driverid" required>
+                            <option value="{{ driverid }}">{{ driverid }}</option>
+                        </select>
+                    </td> 
+                    <td>
+                        <select name="courseid" required>
+                            <option value="{{ run_result[2][1] }}">{{ run_result[2][1] }}</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="run_num" required>
+                            <option value="{{ run_result[2][2] }}">{{ run_result[2][2] }}</option>
+                        </select>
+                    </td>
+                
+                    <td>
+                        <input type="number" min="0" max="300" step="any" name="seconds" value="{{ run_result[2][3] if seconds else run_result[2][3] }}">
+                    </td>
+                    <td>
+                        <input type="number" min="0" max="20" name="cones" value="{{ run_result[2][4] if seconds else run_result[2][4] }}">
+                    </td>
+                    <td>
+                        <input type="number" min="0" max="1" name="wd" value="{{ run_result[2][5] if seconds else run_result[2][5] }}">
+                    </td>
+                </tr>
+                <!-- fourth row of form for add new run -->
+                <tr>
+                    <!-- we get the "driverid" value from editruns.html as the user select a driver on that page. -->
+                    <td>
+                        <select name="driverid" required>
+                            <option value="{{ driverid }}">{{ driverid }}</option>
+                        </select>
+                    </td> 
+                    <td>
+                        <select name="courseid" required>
+                            <option value="{{ run_result[3][1] }}">{{ run_result[3][1] }}</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="run_num" required>
+                            <option value="{{ run_result[3][2] }}">{{ run_result[3][2] }}</option>
+                        </select>
+                    </td>
+                
+                    <td>
+                        <input type="number" min="0" max="300" step="any" name="seconds" value="{{ run_result[3][3] if seconds else run_result[3][3] }}">
+                    </td>
+                    <td>
+                        <input type="number" min="0" max="20" name="cones" value="{{ run_result[3][4] if seconds else run_result[3][4] }}">
+                    </td>
+                    <td>
+                        <input type="number" min="0" max="1" name="wd" value="{{ run_result[3][5] if seconds else run_result[3][5] }}">
+                    </td>
+                </tr>
+                <!-- fifth row of form for add new run -->
+                <tr>
+                    <!-- we get the "driverid" value from editruns.html as the user select a driver on that page. -->
+                    <td>
+                        <select name="driverid" required>
+                            <option value="{{ driverid }}">{{ driverid }}</option>
+                        </select>
+                    </td> 
+                    <td>
+                        <select name="courseid" required>
+                            <option value="{{ run_result[4][1] }}">{{ run_result[4][1] }}</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="run_num" required>
+                            <option value="{{ run_result[4][2] }}">{{ run_result[4][2] }}</option>
+                        </select>
+                    </td>
+                
+                    <td>
+                        <input type="number" min="0" max="300" step="any" name="seconds" value="{{ run_result[4][3] if seconds else run_result[4][3] }}">
+                    </td>
+                    <td>
+                        <input type="number" min="0" max="20" name="cones" value="{{ run_result[4][4] if seconds else run_result[4][4] }}">
+                    </td>
+                    <td>
+                        <input type="number" min="0" max="1" name="wd" value="{{ run_result[4][5] if seconds else run_result[4][5] }}">
+                    </td>
+                </tr>
+                <!-- sixth row of form for add new run -->
+                <tr>
+                    <!-- we get the "driverid" value from editruns.html as the user select a driver on that page. -->
+                    <td>
+                        <select name="driverid" required>
+                            <option value="{{ driverid }}">{{ driverid }}</option>
+                        </select>
+                    </td> 
+                    <td>
+                        <select name="courseid" required>
+                            <option value="{{ run_result[5][1] }}">{{ run_result[5][1] }}</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="run_num" required>
+                            <option value="{{ run_result[5][2] }}">{{ run_result[5][2] }}</option>
+                        </select>
+                    </td>
+                
+                    <td>
+                        <input type="number" min="0" max="300" step="any" name="seconds" value="{{ run_result[5][3] if seconds else run_result[5][3] }}">
+                    </td>
+                    <td>
+                        <input type="number" min="0" max="20" name="cones" value="{{ run_result[5][4] if seconds else run_result[5][4] }}">
+                    </td>
+                    <td>
+                        <input type="number" min="0" max="1" name="wd" value="{{ run_result[5][5] if seconds else run_result[5][5] }}">
+                    </td>
+                </tr>
+                <!-- 7th row of form for add new run -->
+                <tr>
+                    <!-- we get the "driverid" value from editruns.html as the user select a driver on that page. -->
+                    <td>
+                        <select name="driverid" required>
+                            <option value="{{ driverid }}">{{ driverid }}</option>
+                        </select>
+                    </td> 
+                    <td>
+                        <select name="courseid" required>
+                            <option value="{{ run_result[6][1] }}">{{ run_result[6][1] }}</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="run_num" required>
+                            <option value="{{ run_result[6][2] }}">{{ run_result[6][2] }}</option>
+                        </select>
+                    </td>
+                
+                    <td>
+                        <input type="number" min="0" max="300" step="any" name="seconds" value="{{ run_result[6][3] if seconds else run_result[6][3] }}">
+                    </td>
+                    <td>
+                        <input type="number" min="0" max="20" name="cones" value="{{ run_result[6][4] if seconds else run_result[6][4] }}">
+                    </td>
+                    <td>
+                        <input type="number" min="0" max="1" name="wd" value="{{ run_result[6][5] if seconds else run_result[6][5] }}">
+                    </td>
+                </tr>
+                <!-- 8th row of form for add new run -->
+                <tr>
+                    <!-- we get the "driverid" value from editruns.html as the user select a driver on that page. -->
+                    <td>
+                        <select name="driverid" required>
+                            <option value="{{ driverid }}">{{ driverid }}</option>
+                        </select>
+                    </td> 
+                    <td>
+                        <select name="courseid" required>
+                            <option value="{{ run_result[7][1] }}">{{ run_result[4][1] }}</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="run_num" required>
+                            <option value="{{ run_result[7][2] }}">{{ run_result[4][2] }}</option>
+                        </select>
+                    </td>
+                
+                    <td>
+                        <input type="number" min="0" max="300" step="any" name="seconds" value="{{ run_result[7][3] if seconds else run_result[7][3] }}">
+                    </td>
+                    <td>
+                        <input type="number" min="0" max="20" name="cones" value="{{ run_result[7][4] if seconds else run_result[7][4] }}">
+                    </td>
+                    <td>
+                        <input type="number" min="0" max="1" name="wd" value="{{ run_result[7][5] if seconds else run_result[7][5] }}">
+                    </td>
+                </tr>
+                <!-- 9th row of form for add new run -->
+                <tr>
+                    <!-- we get the "driverid" value from editruns.html as the user select a driver on that page. -->
+                    <td>
+                        <select name="driverid" required>
+                            <option value="{{ driverid }}">{{ driverid }}</option>
+                        </select>
+                    </td> 
+                    <td>
+                        <select name="courseid" required>
+                            <option value="{{ run_result[8][1] }}">{{ run_result[8][1] }}</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="run_num" required>
+                            <option value="{{ run_result[8][2] }}">{{ run_result[8][2] }}</option>
+                        </select>
+                    </td>
+                
+                    <td>
+                        <input type="number" min="0" max="300" step="any" name="seconds" value="{{ run_result[8][3] if seconds else run_result[8][3] }}">
+                    </td>
+                    <td>
+                        <input type="number" min="0" max="20" name="cones" value="{{ run_result[8][4] if seconds else run_result[8][4] }}">
+                    </td>
+                    <td>
+                        <input type="number" min="0" max="1" name="wd" value="{{ run_result[8][5] if seconds else run_result[8][5] }}">
+                    </td>
+                </tr>
+                <!-- 10th row of form for add new run -->
+                <tr>
+                    <!-- we get the "driverid" value from editruns.html as the user select a driver on that page. -->
+                    <td>
+                        <select name="driverid" required>
+                            <option value="{{ driverid }}">{{ driverid }}</option>
+                        </select>
+                    </td> 
+                    <td>
+                        <select name="courseid" required>
+                            <option value="{{ run_result[9][1] }}">{{ run_result[9][1] }}</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="run_num" required>
+                            <option value="{{ run_result[9][2] }}">{{ run_result[9][2] }}</option>
+                        </select>
+                    </td>
+                
+                    <td>
+                        <input type="number" min="0" max="300" step="any" name="seconds" value="{{ run_result[9][3] if seconds else run_result[9][3] }}">
+                    </td>
+                    <td>
+                        <input type="number" min="0" max="20" name="cones" value="{{ run_result[9][4] if seconds else run_result[9][4] }}">
+                    </td>
+                    <td>
+                        <input type="number" min="0" max="1" name="wd" value="{{ run_result[9][5] if seconds else run_result[9][5] }}">
+                    </td>
+                </tr>
+                <!-- 11th row of form for add new run -->
+                <tr>
+                    <!-- we get the "driverid" value from editruns.html as the user select a driver on that page. -->
+                    <td>
+                        <select name="driverid" required>
+                            <option value="{{ driverid }}">{{ driverid }}</option>
+                        </select>
+                    </td> 
+                    <td>
+                        <select name="courseid" required>
+                            <option value="{{ run_result[10][1] }}">{{ run_result[10][1] }}</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="run_num" required>
+                            <option value="{{ run_result[10][2] }}">{{ run_result[10][2] }}</option>
+                        </select>
+                    </td>
+                
+                    <td>
+                        <input type="number" min="0" max="300" step="any" name="seconds" value="{{ run_result[10][3] if seconds else run_result[10][3] }}">
+                    </td>
+                    <td>
+                        <input type="number" min="0" max="20" name="cones" value="{{ run_result[10][4] if seconds else run_result[10][4] }}">
+                    </td>
+                    <td>
+                        <input type="number" min="0" max="1" name="wd" value="{{ run_result[10][5] if seconds else run_result[10][5] }}">
+                    </td>
+                </tr>
+                <!-- 12th row of form for add new run -->
+                <tr>
+                    <!-- we get the "driverid" value from editruns.html as the user select a driver on that page. -->
+                    <td>
+                        <select name="driverid" required>
+                            <option value="{{ driverid }}">{{ driverid }}</option>
+                        </select>
+                    </td> 
+                    <td>
+                        <select name="courseid" required>
+                            <option value="{{ run_result[11][1] }}">{{ run_result[11][1] }}</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="run_num" required>
+                            <option value="{{ run_result[11][2] }}">{{ run_result[11][2] }}</option>
+                        </select>
+                    </td>
+                
+                    <td>
+                        <input type="number" min="0" max="300" step="any" name="seconds" value="{{ run_result[11][3] if seconds else run_result[11][3] }}">
+                    </td>
+                    <td>
+                        <input type="number" min="0" max="20" name="cones" value="{{ run_result[11][4] if seconds else run_result[11][4] }}">
+                    </td>
+                    <td>
+                        <input type="number" min="0" max="1" name="wd" value="{{ run_result[11][5] if seconds else run_result[11][5] }}">
+                    </td>
+                </tr>
+            </tbody>
+    </table>
+    <button type="submit">Submit</button>
+</form>
+<!-- table end -->
+
+{% endblock %}
